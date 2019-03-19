@@ -14,7 +14,12 @@ class App extends Component {
   }
 
   setUser = (user) => this.setState({ user })
-  handleSearch = (searchTerm) => this.setState({ searchTerm })
+  handleSearchChange = (e) => this.setState({ searchTerm: e.target.value })
+
+  handleSearchSubmit = (e) => {
+    e.preventDefault()
+    console.log('MAKE SEARCH FOR:', this.state.searchTerm)
+  }
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
@@ -32,7 +37,8 @@ class App extends Component {
               <Search
                 {...routerProps}
                 searchTerm={this.state.searchTerm}
-                handleSearch={this.handleSearch}
+                handleSearchChange={this.handleSearchChange}
+                 handleSearchSubmit={this.handleSearchSubmit}
               />
             )}
           />
