@@ -32,7 +32,7 @@ class API {
     .catch(console.error)
   }
 
-  login = (body) => console.log(process.env) || this.post('/login', body, this.headers)
+  login = ({ email, password }) => this.post('/login', { user: { email, password } }, this.headers)
 
 }
 

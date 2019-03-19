@@ -12,11 +12,13 @@ class App extends Component {
 
   }
 
+  setUser = (user) => this.setState({ user })
+
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/" render={ (routerProps) => <Home {...routerProps} /> } />
+          <Route path="/" render={ (routerProps) => <Home {...routerProps} setUser={this.setUser} /> } />
         </Switch>
       </Router>
     );

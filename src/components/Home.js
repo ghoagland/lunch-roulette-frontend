@@ -19,8 +19,12 @@ class Home extends Component {
   logIn = (e) => {
     e.preventDefault()
     const { user } = this.state
-    console.log(api)
-    api.login({ user }).then(console.log)
+    api.login(user)
+      .then(({ user, jwt }) => {
+        this.props.setUser(user.data)
+        localStorage.setItem('token', jwt)
+        // this.props.history.push('/search')
+      })
   }
 
   toggleAuth = () => this.setState({ authVisible: !this.state.authVisible })
