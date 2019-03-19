@@ -1,26 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch } from 'react-router'
+
+import Home from './components/Home'
+import api from './API'
+import './App.css'
 
 class App extends Component {
+  state = {
+    user: {},
+
+  }
+
+  setUser = (user) => this.setState({ user })
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      api.reauth().then(({ user }) => this.setUser(user.data))
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" render={ (routerProps) => <Home {...routerProps} setUser={this.setUser} /> } />
+        </Switch>
+      </Router>
     );
   }
 }
