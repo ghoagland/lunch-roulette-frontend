@@ -3,8 +3,8 @@ class API {
     this.url = url
   }
 
-  get = (route) => {
-    return fetch(`${this.url}${route}`)
+  get = (route, headers = this.authedHeaders) => {
+    return fetch(`${this.url}${route}`, { headers })
       .then(r => r.ok ? r.json() : new Error('Bad response'))
       .catch(console.error)
   }
@@ -33,6 +33,8 @@ class API {
   }
 
   login = ({ email, password }) => this.post('/login', { user: { email, password } }, this.headers)
+
+  reauth = () => this.get('/profile')
 
 }
 

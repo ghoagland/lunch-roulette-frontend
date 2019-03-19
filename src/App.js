@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Route, Switch } from 'react-router'
 
 import Home from './components/Home'
-
+import api from './API'
 import './App.css'
 
 class App extends Component {
@@ -13,6 +13,12 @@ class App extends Component {
   }
 
   setUser = (user) => this.setState({ user })
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      api.reauth().then(({ user }) => this.setUser(user.data))
+    }
+  }
 
   render() {
     return (
