@@ -3,8 +3,8 @@ class API {
     this.url = url
   }
 
-  get = (route, headers = this.authedHeaders) => {
-    return fetch(`${this.url}${route}`, { headers })
+  get = (route, headers = this.authedHeaders, queryObj = {}) => {
+    return fetch(this.routeWithQuery(route, queryObj), { headers })
       .then(r => r.ok ? r.json() : new Error('Bad response'))
       .catch(console.error)
   }
@@ -35,6 +35,13 @@ class API {
   login = ({ email, password }) => this.post('/login', { user: { email, password } }, this.headers)
 
   reauth = () => this.get('/profile')
+
+  routeWithQuery = (route, queryObj = {}) => {
+    const urlObj = new URL(`${this.url}${route}`)
+    const keys = Object.keys(queryObj)
+    keys.forEach(key => urlObj.searchParams.append(key, queryObj[key]))
+    return urlObj
+  }
 
 }
 

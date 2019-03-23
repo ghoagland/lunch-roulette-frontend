@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-const Search = ({ searchTerm, handleSearchChange, handleSearchSubmit }) => {
+const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
   return(
     <form onSubmit={handleSearchSubmit}>
       <TextField
@@ -10,10 +10,22 @@ const Search = ({ searchTerm, handleSearchChange, handleSearchSubmit }) => {
         label="Whatcha wanna eat?"
         type="search"
         margin="normal"
+        name="term"
         onChange={handleSearchChange}
-        defaultValue={searchTerm}
+        defaultValue={term}
       />
       <br />
+      <TextField
+        id="standard-search"
+        label="Where are you even?"
+        type="search"
+        margin="normal"
+        name="location"
+        onChange={handleSearchChange}
+        defaultValue={location}
+      />
+      <br />
+
       <Button type="submit" variant="contained" color="primary">Feed me</Button>
     </form>
   )

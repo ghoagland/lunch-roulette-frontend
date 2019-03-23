@@ -10,15 +10,28 @@ import './App.css'
 class App extends Component {
   state = {
     user: {},
-    searchTerm: 'lunch'
+    searchParams: {
+      term: 'lunch',
+      location: '81 Prospect St., Brooklyn NY'
+    }
   }
 
   setUser = (user) => this.setState({ user })
-  handleSearchChange = (e) => this.setState({ searchTerm: e.target.value })
+
+  handleSearchParamsChange = (evt) => {
+    this.setState({
+      searchParams: {
+        ...this.state.searchParams,
+        [evt.target.name]: evt.target.value
+      }
+    })
+  }
 
   handleSearchSubmit = (e) => {
     e.preventDefault()
-    console.log('MAKE SEARCH FOR:', this.state.searchTerm)
+    console.log('MAKE SEARCH FOR:', this.state.searchParams.term)
+    api.get('/search', undefined, { term: this.state.searchParams.term, location: this.state.searchParams.location })
+      .then(console.log)
   }
 
   componentDidMount() {
@@ -36,9 +49,10 @@ class App extends Component {
             render={(routerProps) => (
               <Search
                 {...routerProps}
-                searchTerm={this.state.searchTerm}
-                handleSearchChange={this.handleSearchChange}
-                 handleSearchSubmit={this.handleSearchSubmit}
+                term={this.state.searchParams.term}
+                handleSearchChange={this.handleSearchParamsChange}
+                handleSearchSubmit={this.handleSearchSubmit}
+                location={this.state.searchParams.location}
               />
             )}
           />
