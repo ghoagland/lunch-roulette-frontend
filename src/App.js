@@ -13,7 +13,8 @@ class App extends Component {
     searchParams: {
       term: 'lunch',
       location: '81 Prospect St., Brooklyn NY'
-    }
+    },
+    restaurant: {}
   }
 
   setUser = (user) => this.setState({ user })
@@ -30,8 +31,8 @@ class App extends Component {
   handleSearchSubmit = (e) => {
     e.preventDefault()
     console.log('MAKE SEARCH FOR:', this.state.searchParams.term)
-    api.get('/search', undefined, { term: this.state.searchParams.term, location: this.state.searchParams.location })
-      .then(console.log)
+    api.get('/search', undefined, this.state.searchParams)
+      .then(restaurant => console.log(restaurant) || this.setState({ restaurant }))
   }
 
   componentDidMount() {
