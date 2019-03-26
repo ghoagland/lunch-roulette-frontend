@@ -43,11 +43,15 @@ class App extends Component {
 
   }
 
+  loggedIn = () => {
+    return !!localStorage.getItem('token')
+  }
   componentDidMount() {
     if (localStorage.getItem('token')) {
       api.reauth().then(({ user }) => this.setUser(user.data))
     }
   }
+
 
   render() {
     return (
@@ -77,7 +81,9 @@ class App extends Component {
         />
         <Route
           path="/"
-          render={(routerProps) => <Home {...routerProps} setUser={this.setUser} />}
+          render={(routerProps) => (
+            <Home {...routerProps} setUser={this.setUser} loggedIn={this.loggedIn} />
+          )}
         />
 
       </Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 import api from '../API'
 import AuthForm from './AuthForm'
@@ -12,17 +13,22 @@ class Home extends Component {
       email: "",
       default_location: "",
       password: ""
-    }
+    },
+    message: ""
   }
 
   logIn = (e) => {
     e.preventDefault()
     const { user } = this.state
     api.login(user)
-      .then(({ user, jwt }) => {
-        this.props.setUser(user.data)
-        localStorage.setItem('token', jwt)
-        // this.props.history.push('/search')
+      .then(({user, jwt, message}) => {
+        if(!message) {
+          this.props.setUser(user.data)
+          localStorage.setItem('token', jwt)
+          this.props.history.push('/search')
+        } else {
+          this.setState({ message })
+        }
       })
   }
 
@@ -33,15 +39,25 @@ class Home extends Component {
     this.setState({ user: newUser })
   }
 
+  handleClick = () => {
+    if (this.props.loggedIn()) {
+      this.props.history.push('/search')
+    } else {
+      this.toggleAuth()
+    }
+  }
+
 
   render() {
-    return(
+    const buttonText = this.props.loggedIn() ? "Find some food" : "Let's get started!"
+    return (
       <div>
-        <h1>Welcome To Lunch Roulette!</h1>
-        <Button variant="contained" onClick={this.toggleAuth}>
-          Let's get started!
+        <Typography component="h1" variant="h3">Welcome To Lunch Roulette!</Typography>
+        <Button variant="contained" onClick={this.handleClick}>
+          { buttonText }
         </Button>
         <AuthForm
+          message={this.state.message}
           open={this.state.authVisible}
           toggleAuth={this.toggleAuth}
           handleChange={this.handleChange}

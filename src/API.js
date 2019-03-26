@@ -28,7 +28,7 @@ class API {
 
   post = (route, body, headers = this.authedHeaders) => {
     return fetch(`${this.url}${route}`, this.reqOptions('POST', headers, body))
-    .then(r => r.ok ? r.json() : new Error('Bad response'))
+    .then(r => r.json())
     .catch(console.error)
   }
 
