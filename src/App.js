@@ -38,7 +38,7 @@ class App extends Component {
     console.log('MAKE SEARCH FOR:', this.state.searchParams.term)
     this.setState({ restaurantLoading: true })
     api.get('/search', undefined, this.state.searchParams)
-    .then(restaurant => console.log(restaurant) || this.setState({ restaurant, restaurantLoading: false }))
+      .then(restaurant => this.setState({ restaurant, restaurantLoading: false }))
     this.props.history.push(`/restaurant`)
 
   }
