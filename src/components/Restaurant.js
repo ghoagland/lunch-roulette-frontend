@@ -26,7 +26,7 @@ const chipStyles = {
 }
 const textPadding = {
   position: "absolute",
-  top: "1em",
+  top: "4em",
   padding: "1em"
 }
 
