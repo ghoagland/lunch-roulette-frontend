@@ -1,10 +1,19 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import { TextField, Button,Typography } from '@material-ui/core'
+
+const styles = {
+  form: {
+    padding: "1rem",
+  },
+  button: {
+    marginTop: "1rem"
+  }
+}
 
 const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
   return(
-    <form onSubmit={handleSearchSubmit}>
+    <form onSubmit={handleSearchSubmit} style={ styles.form }>
+      <Typography component="h1" variant="h5">Make some choices or use ours</Typography>
       <TextField
         id="standard-search"
         label="Whatcha wanna eat?"
@@ -26,7 +35,7 @@ const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
       />
       <br />
 
-      <Button type="submit" variant="contained" color="primary">Feed me</Button>
+      <Button type="submit" variant="contained" color="primary" style={ styles.button }>Feed me</Button>
     </form>
   )
 }
