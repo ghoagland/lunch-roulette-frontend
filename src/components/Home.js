@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-
+import { Button, Typography } from '@material-ui/core'
 import api from '../API'
 import AuthForm from './AuthForm'
+
+const styles = {
+  header: {
+    padding: "1rem",
+  },
+  button: {
+    margin: "1rem"
+  }
+}
 
 class Home extends Component {
   state = {
@@ -52,8 +59,10 @@ class Home extends Component {
     const buttonText = this.props.loggedIn() ? "Find some food" : "Let's get started!"
     return (
       <div>
-        <Typography component="h1" variant="h3">Welcome To Lunch Roulette!</Typography>
-        <Button variant="contained" onClick={this.handleClick}>
+        <Typography component="h1" variant="h3" style={ styles.header }>
+          Welcome To Lunch Roulette!
+        </Typography>
+        <Button variant="contained" onClick={this.handleClick} style={ styles.button }>
           { buttonText }
         </Button>
         <AuthForm
