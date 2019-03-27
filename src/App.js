@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Route, Switch, withRouter } from 'react-router'
-
 import Home from './components/Home'
 import Search from './components/Search'
 import Restaurant from './components/Restaurant'
+import Navbar from './components/Navbar'
 import api from './API'
 import './App.css'
 
@@ -43,9 +43,14 @@ class App extends Component {
 
   }
 
-  loggedIn = () => {
-    return !!localStorage.getItem('token')
+  loggedIn = () => !!localStorage.getItem('token')
+
+  logOut = () => {
+    this.setState({ user: {} })
+    localStorage.removeItem("token")
+    this.props.history.push('/')
   }
+
   componentDidMount() {
     if (localStorage.getItem('token')) {
       api.reauth().then(({ user }) => this.setUser(user.data))
@@ -55,38 +60,41 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-        <Route
-          path="/search"
-          render={(routerProps) => (
-            <Search
-              {...routerProps}
-              term={this.state.searchParams.term}
-              handleSearchChange={this.handleSearchParamsChange}
-              handleSearchSubmit={this.handleSearchSubmit}
-              location={this.state.searchParams.location}
-            />
-          )}
-        />
-        <Route
-          path="/restaurant"
-          render={(routerProps) => (
-            <Restaurant
-              {...routerProps}
-              restaurant={this.state.restaurant}
-              restaurantLoading={this.state.restaurantLoading}
-              search={this.search}
-            />
-          )}
-        />
-        <Route
-          path="/"
-          render={(routerProps) => (
-            <Home {...routerProps} setUser={this.setUser} loggedIn={this.loggedIn} />
-          )}
-        />
+      <>
+        <Navbar loggedIn={this.loggedIn} logOut={this.logOut}/>
+        <Switch>
+          <Route
+            path="/search"
+            render={(routerProps) => (
+              <Search
+                {...routerProps}
+                term={this.state.searchParams.term}
+                handleSearchChange={this.handleSearchParamsChange}
+                handleSearchSubmit={this.handleSearchSubmit}
+                location={this.state.searchParams.location}
+              />
+            )}
+          />
+          <Route
+            path="/restaurant"
+            render={(routerProps) => (
+              <Restaurant
+                {...routerProps}
+                restaurant={this.state.restaurant}
+                restaurantLoading={this.state.restaurantLoading}
+                search={this.search}
+              />
+            )}
+          />
+          <Route
+            path="/"
+            render={(routerProps) => (
+              <Home {...routerProps} setUser={this.setUser} loggedIn={this.loggedIn} />
+            )}
+          />
 
-      </Switch>
+        </Switch>
+      </>
     );
   }
 }
