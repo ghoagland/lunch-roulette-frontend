@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Search from './components/Search'
 import Restaurant from './components/Restaurant'
 import Navbar from './components/Navbar'
+import Profile from './components/Profile'
 import api from './API'
 import './App.css'
 
@@ -15,10 +16,18 @@ class App extends Component {
       location: '81 Prospect St., Brooklyn NY'
     },
     restaurant: {},
-    restaurantLoading: false
+    restaurantLoading: false,
+    userRestaurants: []
   }
 
-  setUser = (user) => this.setState({ user })
+  // setUser = (user) => this.setState({ user })
+  // setUserRestaurants = (userRestaurants) => this.setState({ userRestaurants })
+  updateUserOnState = (userData) => {
+    this.setState({
+      user: userData.data,
+      userRestaurants: userData.included
+    })
+  }
 
   handleSearchParamsChange = (evt) => {
     this.setState({
@@ -53,7 +62,7 @@ class App extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      api.reauth().then(({ user }) => this.setUser(user.data))
+      api.reauth().then(({ user }) => this.updateUserOnState(user))
     }
   }
 
@@ -86,10 +95,22 @@ class App extends Component {
               />
             )}
           />
+          { this.loggedIn() &&         
+            <Route
+              path="/profile"
+              render={(routerProps) => (
+                <Profile
+                  {...routerProps}
+                  user={this.state.user}
+                  userRestaurants={this.state.userRestaurants}
+                  />
+              )}
+            />
+          }
           <Route
             path="/"
             render={(routerProps) => (
-              <Home {...routerProps} setUser={this.setUser} loggedIn={this.loggedIn} />
+              <Home {...routerProps} updateUserOnState={this.updateUserOnState} loggedIn={this.loggedIn} />
             )}
           />
 

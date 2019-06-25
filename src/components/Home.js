@@ -30,7 +30,7 @@ class Home extends Component {
     api.login(user)
       .then(({user, jwt, message}) => {
         if(!message) {
-          this.props.setUser(user.data)
+          this.props.updateUserOnState(user)
           localStorage.setItem('token', jwt)
           this.props.history.push('/search')
         } else {
