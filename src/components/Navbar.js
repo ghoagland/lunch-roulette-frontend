@@ -9,9 +9,6 @@ const styles = {
   },
   grow: {
     flexGrow: 1,
-  },
-  link: {
-    color: "white"
   }
 }
 
@@ -19,7 +16,9 @@ const styles = {
 const Navbar = ({ loggedIn, logOut, history }) => {
   const loginButtonOrLogoutAndProfileButtons = loggedIn() ? (
     <>
-      <Button color="inherit" component={ Link } to="/profile" role="link">Profile</Button>
+      <Button color="inherit" component={ Link } to="/profile" role="link">
+        Profile
+      </Button>
       <Button color="inherit" onClick={logOut}>Logout</Button>
     </>
   ) : (
@@ -31,8 +30,12 @@ const Navbar = ({ loggedIn, logOut, history }) => {
     <div style={ styles.root }>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" color="inherit" style={ styles.grow }>Lunch Roulette</Typography>
-          <Button color="inherit" component={ Link } to="/search" role="link">Search</Button>
+          <Typography variant="h4" color="inherit" style={ styles.grow }>
+            Lunch Roulette
+          </Typography>
+          <Button color="inherit" component={ Link } to="/search" role="link">
+            Search
+          </Button>
           { loginButtonOrLogoutAndProfileButtons }
         </Toolbar>
       </AppBar>

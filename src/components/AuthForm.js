@@ -14,7 +14,9 @@ const AuthForm = ({ open, toggleAuth, handleChange, logIn, message }) => {
     >
     <DialogContent>
       <Typography component="h2" variant="h5" >Log In</Typography>
-      { message && <Typography component="p" style={{ color: "red" }}>{message}</Typography>}
+      { message && (
+        <Typography component="p" style={{ color: "red" }}>{message}</Typography>
+      )}
       <form onSubmit={logIn}>
             <TextField
               autoFocus

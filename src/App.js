@@ -19,8 +19,6 @@ class App extends Component {
     restaurantLoading: false
   }
 
-  // setUser = (user) => this.setState({ user })
-  // setUserRestaurants = (userRestaurants) => this.setState({ userRestaurants })
   updateUserOnState = (userData) => {
     this.setState({
       user: {
@@ -110,7 +108,11 @@ class App extends Component {
           <Route
             path="/"
             render={(routerProps) => (
-              <Home {...routerProps} updateUserOnState={this.updateUserOnState} loggedIn={this.loggedIn} />
+              <Home
+                {...routerProps}
+                updateUserOnState={this.updateUserOnState}
+                loggedIn={this.loggedIn}
+              />
             )}
           />
 

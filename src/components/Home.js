@@ -62,7 +62,11 @@ class Home extends Component {
         <Typography component="h1" variant="h3" style={ styles.header }>
           Welcome To Lunch Roulette!
         </Typography>
-        <Button variant="contained" onClick={this.handleClick} style={ styles.button }>
+        <Button
+          variant="contained"
+          onClick={ this.handleClick }
+          style={ styles.button }
+        >
           { buttonText }
         </Button>
         <AuthForm

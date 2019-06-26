@@ -65,13 +65,14 @@ class Restaurant extends Component {
             style={chipStyles}
             variant="contained"
             color="primary"
-            onClick={ () => api.post('/user_restaurants', { restaurant }).then(console.log)}
+            onClick={ () => api.post('/user_restaurants', { restaurant }) }
           >
             Go here!
           </Button>
-          <Button style={chipStyles} color="primary" onClick={search} >Try again</Button>
+          <Button style={chipStyles} color="primary" onClick={search}>
+            Try again
+          </Button>
         </div>
-
       </Paper>
     )
   }

@@ -13,7 +13,9 @@ const styles = {
 const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
   return(
     <form onSubmit={handleSearchSubmit} style={ styles.form }>
-      <Typography component="h1" variant="h5">Make some choices or use ours</Typography>
+      <Typography component="h1" variant="h5">
+        Make some choices or use ours
+      </Typography>
       <TextField
         id="standard-search"
         label="Whatcha wanna eat?"
@@ -24,6 +26,7 @@ const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
         defaultValue={term}
       />
       <br />
+      
       <TextField
         id="standard-search"
         label="Where are you even?"
@@ -35,7 +38,14 @@ const Search = ({ term, handleSearchChange, handleSearchSubmit, location }) => {
       />
       <br />
 
-      <Button type="submit" variant="contained" color="primary" style={ styles.button }>Feed me</Button>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        style={ styles.button }
+      >
+        Feed me
+      </Button>
     </form>
   )
 }
