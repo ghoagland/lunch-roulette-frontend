@@ -19,7 +19,7 @@ const styles = {
 const Navbar = ({ loggedIn, logOut, history }) => {
   const loginButtonOrLogoutAndProfileButtons = loggedIn() ? (
     <>
-      <Link style={ styles.link } to="/profile"><Button color="inherit" component="span">Profile</Button></Link>
+      <Button color="inherit" component={ Link } to="/profile" role="link">Profile</Button>
       <Button color="inherit" onClick={logOut}>Logout</Button>
     </>
   ) : (
@@ -31,8 +31,8 @@ const Navbar = ({ loggedIn, logOut, history }) => {
     <div style={ styles.root }>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" color="inherit" style={ styles.grow }>Lunch Roulette</Typography>
-          <Link style={ styles.link } to='/search'><Button color="inherit" component="span">Search</Button></Link>
+          <Typography variant="h4" color="inherit" style={ styles.grow }>Lunch Roulette</Typography>
+          <Button color="inherit" component={ Link } to="/search" role="link">Search</Button>
           { loginButtonOrLogoutAndProfileButtons }
         </Toolbar>
       </AppBar>

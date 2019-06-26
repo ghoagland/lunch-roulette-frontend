@@ -16,16 +16,17 @@ class App extends Component {
       location: '81 Prospect St., Brooklyn NY'
     },
     restaurant: {},
-    restaurantLoading: false,
-    userRestaurants: []
+    restaurantLoading: false
   }
 
   // setUser = (user) => this.setState({ user })
   // setUserRestaurants = (userRestaurants) => this.setState({ userRestaurants })
   updateUserOnState = (userData) => {
     this.setState({
-      user: userData.data,
-      userRestaurants: userData.included
+      user: {
+        ...userData.data,
+        restaurants: userData.included
+      }
     })
   }
 
@@ -95,14 +96,13 @@ class App extends Component {
               />
             )}
           />
-          { this.loggedIn() &&         
+          { this.loggedIn() &&
             <Route
               path="/profile"
               render={(routerProps) => (
                 <Profile
-                  {...routerProps}
-                  user={this.state.user}
-                  userRestaurants={this.state.userRestaurants}
+                  { ...routerProps }
+                  user={ this.state.user }
                   />
               )}
             />
