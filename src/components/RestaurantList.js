@@ -15,7 +15,6 @@ function RestaurantList ({ restaurants }) {
   )
 }
 
-
 function RestaurantListItem ({ restaurant }) {
   return (
     <ListItem>
@@ -25,4 +24,5 @@ function RestaurantListItem ({ restaurant }) {
     </ListItem>
   )
 }
+
 export default RestaurantList
