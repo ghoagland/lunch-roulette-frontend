@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 function RestaurantList ({ restaurants }) {
   const restaurantListItems = restaurants.map(restaurant => (
-    <RestaurantListItem restaurant={ restaurant } key={ restaurant.id } />
+    <RestaurantCard restaurant={ restaurant } key={ restaurant.id } />
   ))
 
   return (
@@ -15,7 +15,7 @@ function RestaurantList ({ restaurants }) {
   )
 }
 
-function RestaurantListItem ({ restaurant }) {
+function RestaurantCard ({ restaurant }) {
   return (
     <ListItem>
       <ListItemText
