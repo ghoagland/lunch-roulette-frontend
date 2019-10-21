@@ -32,4 +32,6 @@ When ready,
 
 will run the code on port 3001 by default.
 
+NOTE: This assumes you are running a server locally on port 3000. If you are running the server on a different port, update the REACT_APP_BACKEND_URL variable in the `.env` file.
+
 Brought to you by Georgina Hoagland.
