@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lunch Roulette Frontend
+---
+_An app for indecisive diners_
 
-## Available Scripts
+Find the backend code at [ghoagland/lunch-roulette-backend](https://github.com/ghoagland/lunch-roulette-backend)
 
-In the project directory, you can run:
+Lunch Roulette picks a random restaurant near you for lunch. It tracks your choices so you can better search and choose based on your preferences.
 
-### `npm start`
+Future goals include:
+ - Setting favorites and being able to hide restaurants (i.e. not into shellfish? Stop seeing the clam shack).
+ - Searching by favorites, places the user hasn't been, places the user hasn't been to in a while.
+ - Add in a weather API to filter results based on conditions - nice weather will mean you walk farther, rainy or snowy weather will pick some place close.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+This app is built using React and Material UI for styling on the front end and Ruby on Rails for the backend. Restaurant information is found using the Yelp API. It is a work in progress.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## To Run
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project requires node and a package manager - instructions here given with `npm`.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+After cloning this repository and moving into the directory,
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`$ npm install`
 
-### `npm run eject`
+will install the necessary packages.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+When ready,
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`$ npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+will run the code on port 3001 by default.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+NOTE: This assumes you are running a server locally on port 3000. If you are running the server on a different port, update the REACT_APP_BACKEND_URL variable in the `.env` file.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Brought to you by Georgina Hoagland.
